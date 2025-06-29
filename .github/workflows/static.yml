@@ -3,7 +3,7 @@ name: Deploy static HTML to Pages
 
 on:
   push:
-    branches: ["main"] # Trigger only on pushes to main
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -32,7 +32,7 @@ jobs:
       - name: Upload HTML site content
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './site' # Change this to your actual HTML folder
+          path: '.'  # root of repo
 
       - name: Deploy to GitHub Pages
         id: deployment
