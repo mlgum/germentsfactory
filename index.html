@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Lasker fashion - Premium Clothing Manufacturing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #fff, #f39c12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #f39c12;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #f39c12;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(44, 62, 80, 0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="fabric" patternUnits="userSpaceOnUse" width="40" height="40"><rect width="40" height="40" fill="%23f8f9fa"/><circle cx="20" cy="20" r="1" fill="%23dee2e6"/></pattern></defs><rect width="100%" height="100%" fill="url(%23fabric)"/></svg>');
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            box-shadow: 0 10px 30px rgba(243, 156, 18, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(243, 156, 18, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #3498db, #f39c12);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(45deg, #3498db, #2c3e50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f39c12;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: #2c3e50;
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(243, 156, 18, 0.3);
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #f39c12;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo"> Garments Factory</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Premium Garment Manufacturing</h1>
+                <p>Your trusted partner in high-quality clothing production with cutting-edge technology and sustainable practices</p>
+                <a href="#contact" class="cta-button">Get Quote Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">👕</div>
+                    <h3>Custom Manufacturing</h3>
+                    <p>Tailored clothing production according to your specifications, from small batches to large orders with precision and quality.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">✂️</div>
+                    <h3>Pattern Making</h3>
+                    <p>Expert pattern design and development services ensuring perfect fit and efficient production processes.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎨</div>
+                    <h3>Design Consultation</h3>
+                    <p>Professional design guidance and trend analysis to help create market-ready fashion products.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">📦</div>
+                    <h3>Private Label</h3>
+                    <p>Complete private label solutions including branding, packaging, and distribution support.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🌱</div>
+                    <h3>Sustainable Production</h3>
+                    <p>Eco-friendly manufacturing processes using sustainable materials and ethical production methods.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">⚡</div>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick turnaround times without compromising quality, meeting your urgent production deadlines.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🧶</div>
+                    <h3>Knit Fabric Specialization</h3>
+                    <p>Expert in knit fabric manufacturing including jersey, rib, interlock, fleece, and technical knits for various applications.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🪡</div>
+                    <h3>Woven Fabric Excellence</h3>
+                    <p>Premium woven fabric production including cotton, polyester, denim, canvas, and luxury fabric manufacturing.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🔬</div>
+                    <h3>Quality Control & Testing</h3>
+                    <p>Advanced fabric testing lab ensuring color fastness, shrinkage control, and international quality standards compliance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title">Our Products</h2>
+            <div class="products-grid">
+                <div class="product-card fade-in">
+                    <div class="product-image">👔</div>
+                    <div class="product-info">
+                        <h3>Formal Wear</h3>
+                        <p>Premium suits, shirts, and formal attire for professional and special occasions.</p>
+                    </div>
+                </div>
+                  <div class="product-card fade-in">
+                    <div class="product-image">🧶</div>
+                    <div class="product-info">
+                        <h3>Knit Garments</h3>
+                        <p>T-shirts, polo shirts, hoodies, sweaters, and knitwear using various knit constructions.</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">🪡</div>
+                    <div class="product-info">
+                        <h3>Woven Garments</h3>
+                        <p>Shirts, pants, dresses, and structured garments made from premium woven fabrics.</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">👕</div>
+                    <div class="product-info">
+                        <h3>Casual Clothing</h3>
+                        <p>Comfortable everyday wear including t-shirts, jeans, and casual outfits.</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">👗</div>
+                    <div class="product-info">
+                        <h3>Women's Fashion</h3>
+                        <p>Stylish dresses, blouses, and contemporary women's fashion collections.</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">🏃</div>
+                    <div class="product-info">
+                        <h3>Activewear</h3>
+                        <p>High-performance sportswear and athletic clothing for active lifestyles.</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">👶</div>
+                    <div class="product-info">
+                        <h3>Kids Clothing</h3>
+                        <p>Safe, comfortable, and fun clothing for children of all ages.</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">🧥</div>
+                    <div class="product-info">
+                        <h3>Outerwear</h3>
+                        <p>Jackets, coats, and weather-resistant clothing for all seasons.</p>
+                    </div>
+                </div>
+              
+                <div class="product-card fade-in">
+                    <div class="product-image">👖</div>
+                    <div class="product-info">
+                        <h3>Denim Specialties</h3>
+                        <p>High-quality jeans, jackets, and denim accessories with custom washes and treatments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h2>About Garments</h2>
+                    <p>With over two decades of experience in the garment industry,  Garments has established itself as a leading manufacturer of high-quality clothing. We combine traditional craftsmanship with modern technology to deliver exceptional products.</p>
+                    <p>Our state-of-the-art facility is equipped with advanced machinery for both knit and woven fabric production, operated by skilled professionals who specialize in various fabric constructions and garment manufacturing techniques.</p>
+                    <p>We excel in knit fabric production including single jersey, double jersey, rib, interlock, and fleece, as well as woven fabric manufacturing using cotton, polyester, blends, and specialty fibers with advanced dyeing and finishing capabilities.</p>
+                    <p>We pride ourselves on our commitment to sustainability, ethical manufacturing practices, and building long-term partnerships with our clients worldwide.</p>
+                </div>
+                <div class="stats fade-in">
+                    <div class="stat">
+                        <div class="stat-number">2+</div>
+                        <div>Years Experience</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">50+</div>
+                        <div>Happy Clients</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">1000+</div>
+                        <div>Garments Produced</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">5+</div>
+                        <div>Countries Served</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-form fade-in">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company Name</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info fade-in">
+                    <h3>Get In Touch</h3>
+                    <p><strong>📍 Address:</strong><br>
+                   Road # 5/3, Block # D<br>
+                    Shouth Banasree, Dhaka <br>
+                    Bangladesh</p>
+                    
+                    <p><strong>📞 Phone:</strong><br>
+                    +880 1925555435</p>
+                    
+                    <p><strong>✉️ Email:</strong><br>
+                    thimtiaz@gmail.com<br>
+                    sales@Laskerfashion.com</p>
+                    
+                    <p><strong>🕒 Business Hours:</strong><br>
+                    Monday - Friday: 8:00 AM - 6:00 PM<br>
+                    Saturday: 9:00 AM - 2:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Laskerfashion Garments Factory. All rights reserved. | Crafting Quality Since 2005</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) rotateX(5deg)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateX(0)';
+            });
+        });
+    </script>
+</body>
+</html>
